@@ -195,3 +195,9 @@ Route::get('/migration', function () {
     $exitCode = Artisan::call('migrate', [] );
     echo $exitCode;
 });
+
+Route::get('/cache-clear', function () {
+    Artisan::call('config:clear');
+    Artisan::call('cache:clear');
+    Artisan::call('view:clear');
+});
