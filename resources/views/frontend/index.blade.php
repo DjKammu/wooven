@@ -58,7 +58,6 @@
         </a>
     </section>
 @endif
-
 <!--/ End Slider Area -->
 
 <!-- Start Small Banner  -->

@@ -67,6 +67,7 @@
 				</div>
 			</div>
 		</div>
+		
 		<!-- End Footer Top -->
 		<div class="copyright">
 			<div class="container">
