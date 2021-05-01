@@ -66,18 +66,15 @@ class AdminController extends Controller
         $settings=Settings::first();
 
         if($request->hasFile('logo')){
-             $fileNameWithExt = $request->file('logo')->getClientOriginalName();
+             $fileNameWithExt = pathinfo($request->file('logo')->getClientOriginalName(), PATHINFO_FILENAME);
              $fileNameWithExt = str_replace(" ", "_", $fileNameWithExt);
              $filename = preg_replace("/[^a-zA-Z0-9\s]/", "", $fileNameWithExt);
              $filename = urlencode($filename);
              $extension = $request->file('logo')->getClientOriginalExtension();
              $fileNameToStore = $filename.'.'.$extension;
 
-           // $request->file('image')->store('prescription');
-             // $request->file('logo')->storeAs('phptos/',$fileNameToStore);
-
              \Storage::putFileAs(
-                'phptos', $request->file('logo'), $fileNameToStore
+                'photos', $request->file('logo'), $fileNameToStore
             );
 
              $data['logo'] = '/storage/photos/'.$fileNameToStore;
