@@ -42,4 +42,8 @@ class Product extends Model
         return $this->hasMany(Wishlist::class)->whereNotNull('cart_id');
     }
 
+    public function images(){
+        return $this->hasMany(ProductImage::class);
+    }
+
 }
