@@ -23,40 +23,6 @@
           @enderror
         </div>
 
-       <!--  <div class="form-group">
-          <label for="description" class="col-form-label">Description</label>
-          <textarea class="form-control" id="description" name="description">{{old('description')}}</textarea>
-          @error('description')
-          <span class="text-danger">{{$message}}</span>
-          @enderror
-        </div>
- -->
-
-        <!-- <div class="form-group">
-          <label for="is_featured">Is Featured</label><br>
-          <input type="checkbox" name='is_featured' id='is_featured' value='1' checked> Yes                        
-        </div> -->
-              <!-- {{-- {{$categories}} --}} -->
-
-        <!-- <div class="form-group">
-          <label for="cat_id">Category <span class="text-danger">*</span></label>
-          <select name="cat_id" id="cat_id" class="form-control">
-              <option value="">--Select any category--</option>
-              @foreach($categories as $key=>$cat_data)
-                  <option value='{{$cat_data->id}}'>{{$cat_data->title}}</option>
-              @endforeach
-          </select>
-        </div> -->
-
-        <!-- <div class="form-group d-none" id="child_cat_div">
-          <label for="child_cat_id">Sub Category</label>
-          <select name="child_cat_id" id="child_cat_id" class="form-control">
-              <option value="">--Select any category--</option>
-              {{-- @foreach($parent_cats as $key=>$parent_cat)
-                  <option value='{{$parent_cat->id}}'>{{$parent_cat->title}}</option>
-              @endforeach --}}
-          </select>
-        </div> -->
 
         <div class="form-group">
           <label for="price" class="col-form-label">Price( Per Sq Ft ) <span class="text-danger">*</span></label>
@@ -65,70 +31,6 @@
           <span class="text-danger">{{$message}}</span>
           @enderror
         </div>
-
-        <!-- <div class="form-group">
-          <label for="discount" class="col-form-label">Discount(%)</label>
-          <input id="discount" type="number" name="discount" min="0" max="100" placeholder="Enter discount"  value="{{old('discount')}}" class="form-control">
-          @error('discount')
-          <span class="text-danger">{{$message}}</span>
-          @enderror
-        </div>
-        <div class="form-group">
-          <label for="size">Size</label>
-          <select name="size[]" class="form-control selectpicker"  multiple data-live-search="true">
-              <option value="">--Select any size--</option>
-              <option value="S">Small (S)</option>
-              <option value="M">Medium (M)</option>
-              <option value="L">Large (L)</option>
-              <option value="XL">Extra Large (XL)</option>
-          </select>
-        </div> -->
-
-        <!-- <div class="form-group">
-          <label for="brand_id">Brand</label>
-          {{-- {{$brands}} --}}
-
-          <select name="brand_id" class="form-control">
-              <option value="">--Select Brand--</option>
-             @foreach($brands as $brand)
-              <option value="{{$brand->id}}">{{$brand->title}}</option>
-             @endforeach
-          </select>
-        </div>
-
-        <div class="form-group">
-          <label for="condition">Condition</label>
-          <select name="condition" class="form-control">
-              <option value="">--Select Condition--</option>
-              <option value="default">Default</option>
-              <option value="new">New</option>
-              <option value="hot">Hot</option>
-          </select>
-        </div>
-
-        <div class="form-group">
-          <label for="stock">Quantity <span class="text-danger">*</span></label>
-          <input id="quantity" type="number" name="stock" min="0" placeholder="Enter quantity"  value="{{old('stock')}}" class="form-control">
-          @error('stock')
-          <span class="text-danger">{{$message}}</span>
-          @enderror
-        </div>
-        <div class="form-group">
-          <label for="inputPhoto" class="col-form-label">Photo <span class="text-danger">*</span></label>
-          <div class="input-group">
-              <span class="input-group-btn">
-                  <a id="lfm" data-input="thumbnail" data-preview="holder" class="btn btn-primary">
-                  <i class="fa fa-picture-o"></i> Choose
-                  </a>
-              </span>
-          <input id="thumbnail" class="form-control" type="text" name="photo" value="{{old('photo')}}">
-        </div>
-        <div id="holder" style="margin-top:15px;max-height:100px;"></div>
-          @error('photo')
-          <span class="text-danger">{{$message}}</span>
-          @enderror
-        </div> -->
-
            <div class="form-group image-container">
             <div class="row element" id='div_1'>
                 <div class="col-sm-5">
