@@ -78,7 +78,7 @@
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Product Options:</h6>
             <a class="collapse-item" href="{{route('product.index')}}">Inner Products</a>
-            <a class="collapse-item" href="{{route('product.create')}}">Border Products</a>
+            <a class="collapse-item" href="{{route('border-product.index')}}">Border Products</a>
           </div>
         </div>
     </li>

@@ -16,6 +16,7 @@ class CreateBorderProductsTable extends Migration
         Schema::create('border_products', function (Blueprint $table) {
             $table->id();
             $table->string('title');
+             $table->float('price')->nullable();
             $table->timestamps();
         });
     }

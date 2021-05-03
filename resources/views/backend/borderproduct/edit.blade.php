@@ -5,7 +5,7 @@
 <div class="card">
     <h5 class="card-header">Edit Product</h5>
     <div class="card-body">
-      <form method="post" action="{{route('product.update',$product->id)}}" enctype="multipart/form-data">
+      <form method="post" action="{{route('border-product.update',$product->id)}}" enctype="multipart/form-data">
         @csrf 
         @method('PATCH')
         <div class="form-group">
@@ -16,34 +16,10 @@
           @enderror
         </div>
 
-        <div class="form-group">
-          <label for="summary" class="col-form-label">Summary <span class="text-danger">*</span></label>
-          <textarea class="form-control" id="summary" name="summary">{{$product->summary}}</textarea>
-          @error('summary')
-          <span class="text-danger">{{$message}}</span>
-          @enderror
-        </div>
-<!-- 
-        <div class="form-group">
-          <label for="description" class="col-form-label">Description</label>
-          <textarea class="form-control" id="description" name="description">{{$product->description}}</textarea>
-          @error('description')
-          <span class="text-danger">{{$message}}</span>
-          @enderror
-        </div> -->
-
-
-        
-        <!-- <div class="form-group {{(($product->child_cat_id)? '' : 'd-none')}}" id="child_cat_div">
-          <label for="child_cat_id">Sub Category</label>
-          <select name="child_cat_id" id="child_cat_id" class="form-control">
-              <option value="">--Select any sub category--</option>
-              
-          </select>
-        </div> -->
+       
 
         <div class="form-group">
-          <label for="price" class="col-form-label">Price(Per Sq Mtr.) <span class="text-danger">*</span></label>
+          <label for="price" class="col-form-label">Price <span class="text-danger">*</span></label>
           <input id="price" type="number" name="price" placeholder="Enter price"  value="{{$product->price}}" class="form-control">
           @error('price')
           <span class="text-danger">{{$message}}</span>
@@ -58,7 +34,7 @@
                 <div class="col-sm-5">
                     <div class="form-group">
                         <label for="form_name">Image *</label>
-                        <input type='file' name="innerImages[{{$k}}][image]"  value="{{ $image->image }}" class="form-control" placeholder='Enter your skill' >
+                        <input type='file' name="innerImages[{{$k}}][image]"  value="{{ $image->image }}" class="form-control"  >
                       </br>
                         <img class="img" src="{{ asset($image->image) }}" />
                     </div>

@@ -111,6 +111,9 @@ Route::group(['prefix'=>'/admin','middleware'=>['auth','admin']],function(){
     Route::resource('/category','CategoryController');
     // Product
     Route::resource('/product','ProductController');
+
+    // Border Product
+    Route::resource('/border-product','BorderProductController');
     // Ajax for sub category
     Route::post('/category/{id}/child','CategoryController@getChildByParent');
     // POST category
