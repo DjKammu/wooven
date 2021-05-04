@@ -60,386 +60,58 @@
 @endif
 <!--/ End Slider Area -->
 
-<!-- Start Small Banner  -->
-<section class="small-banner section">
-    <div class="container-fluid">
-        <div class="row">
-            @php 
-            $category_lists=DB::table('categories')->where('status','active')->limit(3)->get();
-            @endphp
-            @if($category_lists)
-                @foreach($category_lists as $cat)
-                    @if($cat->is_parent==1)
-                        <!-- Single Banner  -->
-                        <div class="col-lg-4 col-md-6 col-12">
-                            <div class="single-banner">
-                                @if($cat->photo)
-                                    <img src="{{$cat->photo}}" alt="{{$cat->photo}}">
-                                @else
-                                    <img src="https://via.placeholder.com/600x370" alt="#">
-                                @endif
-                                <div class="content">
-                                    <h3>{{$cat->title}}</h3>
-                                        <a href="{{route('product-cat',$cat->slug)}}">Discover Now</a>
-                                </div>
-                            </div>
-                        </div>
-                    @endif
-                    <!-- /End Single Banner  -->
-                @endforeach
-            @endif
-        </div>
-    </div>
-</section>
-<!-- End Small Banner -->
-
-<!-- Start Product Area -->
-<!-- <div class="product-area section">
+<section class="about-us section">
         <div class="container">
             <div class="row">
-                <div class="col-12">
-                    <div class="section-title">
-                        <h2>Trending Item</h2>
+                <div class="col-lg-6 col-12">
+                    <div class="about-content">
+
+                          <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                <li class="nav-item waves-effect waves-light btn">
+                                  <a class="nav-link active" id="inner-tab" data-toggle="tab" href="#inner" role="tab" aria-controls="inner" aria-selected="false">Choose Inner</a>
+                                </li>
+                                <li class="nav-item waves-effect waves-light btn">
+                                  <a class="nav-link" id="border-tab" data-toggle="tab" href="#border" role="tab" aria-controls="border" aria-selected="false">Choose Border</a>
+                                </li>                              </ul>
+                              <div class="tab-content" id="myTabContent">
+                                <div class="tab-pane active" id="inner" role="tabpanel" aria-labelledby="inner-tab">
+
+                                    Raw denim you
+                                  probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master
+                                  cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh
+                                  dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia
+                                  cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.
+
+                              </div>
+
+                                <div class="tab-pane fade" id="border" role="tabpanel" aria-labelledby="border-tab">
+
+                                    Food truck fixie
+                                  locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog
+                                  sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo
+                                  booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo
+                                  nostrud organic, assumenda labore aesthetic magna delectus mollit. Keytar helvetica VHS salvia yr, vero
+                                  magna velit sapiente labore stumptown. Vegan fanny pack odio cillum wes anderson 8-bit, sustainable jean
+                                  shorts beard ut DIY ethical culpa terry richardson biodiesel. Art party scenester stumptown, tumblr butcher
+                                  vero sint qui sapiente accusamus tattooed echo park.
+
+                              </div>
+
+                              </div>
+                     
                     </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-12">        
-                    <div class="product-info">
-                        <div class="nav-main">
-                            <!-- Tab Nav 
-                            <ul class="nav nav-tabs filter-tope-group" id="myTab" role="tablist">
-                                @php 
-                                    $categories=DB::table('categories')->where('status','active')->where('is_parent',1)->get();
-                                    // dd($categories);
-                                @endphp
-                                @if($categories)
-                                <button class="btn" style="background:black"data-filter="*">
-                                    All Products
-                                </button>
-                                    @foreach($categories as $key=>$cat)
-                                    
-                                    <button class="btn" style="background:none;color:black;"data-filter=".{{$cat->id}}">
-                                        {{$cat->title}}
-                                    </button>
-                                    @endforeach
-                                @endif
-                            </ul>
-                            <!--/ End Tab Nav -->
-                        </div>
-                        <div class="tab-content isotope-grid" id="myTabContent">
-                             <!-- Start Single Tab 
-                            @if($product_lists)
-                                @foreach($product_lists as $key=>$product)
-                                <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item {{$product->cat_id}}">
-                                    <div class="single-product">
-                                        <div class="product-img">
-                                            <a href="{{route('product-detail',$product->slug)}}">
-                                                @php 
-                                                    $photo=explode(',',$product->photo);
-                                                // dd($photo);
-                                                @endphp
-                                                <img class="default-img" src="{{$photo[0]}}" alt="{{$photo[0]}}">
-                                                <img class="hover-img" src="{{$photo[0]}}" alt="{{$photo[0]}}">
-                                                @if($product->stock<=0)
-                                                    <span class="out-of-stock">Sale out</span>
-                                                @elseif($product->condition=='new')
-                                                    <span class="new">New</span
-                                                @elseif($product->condition=='hot')
-                                                    <span class="hot">Hot</span>
-                                                @else
-                                                    <span class="price-dec">{{$product->discount}}% Off</span>
-                                                @endif
-
-
-                                            </a>
-                                            <div class="button-head">
-                                                <div class="product-action">
-                                                    <a data-toggle="modal" data-target="#{{$product->id}}" title="Quick View" href="#"><i class=" ti-eye"></i><span>Quick Shop</span></a>
-                                                    <a title="Wishlist" href="{{route('add-to-wishlist',$product->slug)}}" ><i class=" ti-heart "></i><span>Add to Wishlist</span></a>
-                                                </div>
-                                                <div class="product-action-2">
-                                                    <a title="Add to cart" href="{{route('add-to-cart',$product->slug)}}">Add to cart</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="product-content">
-                                            <h3><a href="{{route('product-detail',$product->slug)}}">{{$product->title}}</a></h3>
-                                            <div class="product-price">
-                                                @php
-                                                    $after_discount=($product->price-($product->price*$product->discount)/100);
-                                                @endphp
-                                                <span>${{number_format($after_discount,2)}}</span>
-                                                <del style="padding-left:4%;">${{number_format($product->price,2)}}</del>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                @endforeach
-
-                             <!--/ End Single Tab 
-                            @endif
-                       
-                        <!--/ End Single Tab 
-
-                        </div>
+                <div class="col-lg-6 col-12">
+                    <div class="about-img overlay">
+                        
+                        <img src="" />
                     </div>
                 </div>
             </div>
         </div>
-</div> -->
-<!-- End Product Area -->
-{{-- @php
-    $featured=DB::table('products')->where('is_featured',1)->where('status','active')->orderBy('id','DESC')->limit(1)->get();
-@endphp --}}
-<!-- Start Midium Banner  -->
-<!-- <section class="midium-banner">
-    <div class="container">
-        <div class="row">
-            @if($featured)
-                @foreach($featured as $data)
-                    <!-- Single Banner 
-                    <div class="col-lg-6 col-md-6 col-12">
-                        <div class="single-banner">
-                            @php 
-                                $photo=explode(',',$data->photo);
-                            @endphp
-                            <img src="{{$photo[0]}}" alt="{{$photo[0]}}">
-                            <div class="content">
-                                <p>{{$data->cat_info['title']}}</p>
-                                <h3>{{$data->title}} <br>Up to<span> {{$data->discount}}%</span></h3>
-                                <a href="{{route('product-detail',$data->slug)}}">Shop Now</a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- /End Single Banner  
-                @endforeach
-            @endif
-        </div>
-    </div>
-</section> -->
-<!-- End Midium Banner -->
-
-<!-- Start Most Popular -->
-<div class="product-area most-popular section">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <div class="section-title">
-                    <h2>Products</h2>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-12">
-                <div class="owl-carousel popular-slider">
-                    @foreach($product_lists as $product)
-                        @if($product->condition=='hot')
-                            <!-- Start Single Product -->
-                        <div class="single-product">
-                            <div class="product-img">
-                                <a href="{{route('product-detail',$product->slug)}}">
-                                    @php 
-                                        $photo=explode(',',$product->photo);
-                                    // dd($photo);
-                                    @endphp
-                                    <img class="default-img" src="{{$photo[0]}}" alt="{{$photo[0]}}">
-                                    <img class="hover-img" src="{{$photo[0]}}" alt="{{$photo[0]}}">
-                                    {{-- <span class="out-of-stock">Hot</span> --}}
-                                </a>
-                                <div class="button-head">
-                                    <div class="product-action">
-                                        <a data-toggle="modal" data-target="#{{$product->id}}" title="Quick View" href="#"><i class=" ti-eye"></i><span>Quick Shop</span></a>
-                                        <a title="Wishlist" href="{{route('add-to-wishlist',$product->slug)}}" ><i class=" ti-heart "></i><span>Add to Wishlist</span></a>
-                                    </div>
-                                    <div class="product-action-2">
-                                        <a href="{{route('add-to-cart',$product->slug)}}">Add to cart</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product-content">
-                                <h3><a href="{{route('product-detail',$product->slug)}}">{{$product->title}}</a></h3>
-                                <div class="product-price">
-                                    <span class="old">${{number_format($product->price,2)}}</span>
-                                    @php 
-                                    $after_discount=($product->price-($product->price*$product->discount)/100)
-                                    @endphp
-                                    <span>${{number_format($after_discount,2)}}</span>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End Single Product -->
-                        @endif
-                    @endforeach
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- End Most Popular Area -->
-
-<!-- Start Shop Home List  -->
-<!-- <section class="shop-home-list section">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 col-md-12 col-12">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="shop-section-title">
-                            <h1>Latest Items</h1>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    @php
-                        $product_lists=DB::table('products')->where('status','active')->orderBy('id','DESC')->limit(6)->get();
-                    @endphp
-                    @foreach($product_lists as $product)
-                        <div class="col-md-4">
-                            <!-- Start Single List  
-                            <div class="single-list">
-                                <div class="row">
-                                <div class="col-lg-6 col-md-6 col-12">
-                                    <div class="list-image overlay">
-                                        @php 
-                                            $photo=explode(',',$product->photo);
-                                            // dd($photo);
-                                        @endphp
-                                        <img src="{{$photo[0]}}" alt="{{$photo[0]}}">
-                                        <a href="{{route('add-to-cart',$product->slug)}}" class="buy"><i class="fa fa-shopping-bag"></i></a>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-md-6 col-12 no-padding">
-                                    <div class="content">
-                                        <h4 class="title"><a href="#">{{$product->title}}</a></h4>
-                                        <p class="price with-discount">${{number_format($product->discount,2)}}</p>
-                                    </div>
-                                </div>
-                                </div>
-                            </div>
-                            <!-- End Single List 
-                        </div>
-                    @endforeach
-
-                </div>
-            </div>
-        </div>
-    </div>
-</section> -->
-<!-- End Shop Home List  -->
-{{-- @foreach($featured as $data)
-    <!-- Start Cowndown Area -->
-    <section class="cown-down">
-        <div class="section-inner ">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-6 col-12 padding-right">
-                        <div class="image">
-                            @php 
-                                $photo=explode(',',$data->photo);
-                                // dd($photo);
-                            @endphp
-                            <img src="{{$photo[0]}}" alt="{{$photo[0]}}">
-                        </div>	
-                    </div>	
-                    <div class="col-lg-6 col-12 padding-left">
-                        <div class="content">
-                            <div class="heading-block">
-                                <p class="small-title">Deal of day</p>
-                                <h3 class="title">{{$data->title}}</h3>
-                                <p class="text">{!! html_entity_decode($data->summary) !!}</p>
-                                @php 
-                                    $after_discount=($product->price-($product->price*$product->discount)/100)
-                                @endphp
-                                <h1 class="price">${{number_format($after_discount)}} <s>${{number_format($data->price)}}</s></h1>
-                                <div class="coming-time">
-                                    <div class="clearfix" data-countdown="2021/02/30"></div>
-                                </div>
-                            </div>
-                        </div>	
-                    </div>	
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- /End Cowndown Area -->
-@endforeach --}}
-<!-- Start Shop Blog  -->
-<!-- <section class="shop-blog section">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <div class="section-title">
-                    <h2>From Our Blog</h2>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            @if($posts)
-                @foreach($posts as $post)
-                    <div class="col-lg-4 col-md-6 col-12">
-                        <!-- Start Single Blog 
-                        <div class="shop-single-blog">
-                            <img src="{{$post->photo}}" alt="{{$post->photo}}">
-                            <div class="content">
-                                <p class="date">{{$post->created_at->format('d M , Y. D')}}</p>
-                                <a href="{{route('blog.detail',$post->slug)}}" class="title">{{$post->title}}</a>
-                                <a href="{{route('blog.detail',$post->slug)}}" class="more-btn">Continue Reading</a>
-                            </div>
-                        </div>
-                        <!-- End Single Blog 
-                    </div>
-                @endforeach
-            @endif
-            
-        </div>
-    </div>
-</section> -->
-<!-- End Shop Blog  -->
-
-<!-- Start Shop Services Area -->
-<section class="shop-services section home">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-3 col-md-6 col-12">
-                <!-- Start Single Service -->
-                <div class="single-service">
-                    <i class="ti-rocket"></i>
-                    <h4>Free shiping</h4>
-                    <p>Orders over $100</p>
-                </div>
-                <!-- End Single Service -->
-            </div>
-            <div class="col-lg-3 col-md-6 col-12">
-                <!-- Start Single Service -->
-                <div class="single-service">
-                    <i class="ti-reload"></i>
-                    <h4>Free Return</h4>
-                    <p>Within 30 days returns</p>
-                </div>
-                <!-- End Single Service -->
-            </div>
-            <div class="col-lg-3 col-md-6 col-12">
-                <!-- Start Single Service -->
-                <div class="single-service">
-                    <i class="ti-lock"></i>
-                    <h4>Sucure Payment</h4>
-                    <p>100% secure payment</p>
-                </div>
-                <!-- End Single Service -->
-            </div>
-            <div class="col-lg-3 col-md-6 col-12">
-                <!-- Start Single Service -->
-                <div class="single-service">
-                    <i class="ti-tag"></i>
-                    <h4>Best Peice</h4>
-                    <p>Guaranteed price</p>
-                </div>
-                <!-- End Single Service -->
-            </div>
-        </div>
-    </div>
 </section>
+
+
 <!-- End Shop Services Area -->
 
 @include('frontend.layouts.newsletter')
